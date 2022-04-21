@@ -9,5 +9,9 @@ FactoryBot.define do
     shipping_day_id { rand(2..4) }
     price { rand(300..9_999_999) }
     association :user
+
+    after(:build) do |item|
+      item.image.attach(io: File.open('app/assets/images/icon_camera.png'), filename: 'icon_camera.png')
+    end
   end
 end
