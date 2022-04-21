@@ -13,4 +13,6 @@ class User < ApplicationRecord
     validates :kana_last_name
   end
   validates :birthday, format: { with: /(\A(\d)+).((\d)+).((\d)+\z)/, message: 'を入力してください' }
+
+  has_many :items
 end
