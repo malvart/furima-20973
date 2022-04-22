@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :varify_user, only: [:edit, :destroy]
 
   def index
-    @items = Item.all.order("created_at DESC")
+    @items = Item.all.order('created_at DESC')
   end
 
   def new
@@ -51,8 +51,6 @@ class ItemsController < ApplicationController
   end
 
   def varify_user
-    unless current_user == @item.user
-      redirect_to root_path
-    end
+    redirect_to root_path unless current_user == @item.user
   end
 end
