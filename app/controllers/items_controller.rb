@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :destroy]
   before_action :find_item, only: [:show, :edit, :update, :destroy]
   before_action :varify_user, only: [:edit, :destroy]
+  before_action :sold_out, only: :edit
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -52,5 +53,9 @@ class ItemsController < ApplicationController
 
   def varify_user
     redirect_to root_path unless current_user == @item.user
+  end
+
+  def sold_out
+    redirect_to root_path if @item.order.present?
   end
 end

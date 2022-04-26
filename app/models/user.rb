@@ -15,4 +15,5 @@ class User < ApplicationRecord
   validates :birthday, format: { with: /(\A(\d)+).((\d)+).((\d)+\z)/, message: 'を入力してください' }
 
   has_many :items
+  has_many :orders
 end
