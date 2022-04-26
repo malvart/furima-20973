@@ -22,17 +22,18 @@ RSpec.describe OrderAddress, type: :model do
       it '郵便番号が空では購入できない' do
         @order_address.postal_code = ''
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Postal code can't be blank", "Postal code is invalid. Include hyphen(-)")
+        expect(@order_address.errors.full_messages).to include("Postal code can't be blank",
+                                                               'Postal code is invalid. Include hyphen(-)')
       end
       it '郵便番号が「3桁ハイフン4桁」でないと購入できない' do
         @order_address.postal_code = '1234567'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@order_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it '郵便番号が半角文字列でないと購入できない' do
         @order_address.postal_code = '１２３－４５６７'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@order_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it '都道府県が空では購入できない' do
         @order_address.prefecture_id = 1
@@ -52,22 +53,22 @@ RSpec.describe OrderAddress, type: :model do
       it '電話番号が空では購入できない' do
         @order_address.telephone_number = ''
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Telephone number can't be blank", "Telephone number is invalid")
+        expect(@order_address.errors.full_messages).to include("Telephone number can't be blank", 'Telephone number is invalid')
       end
       it '電話番号が9桁以下では購入できない' do
         @order_address.telephone_number = '123456789'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Telephone number is invalid")
+        expect(@order_address.errors.full_messages).to include('Telephone number is invalid')
       end
       it '電話番号が12桁以上では購入できない' do
         @order_address.telephone_number = '123456789012'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Telephone number is invalid")
+        expect(@order_address.errors.full_messages).to include('Telephone number is invalid')
       end
       it '電話番号が半角数字でないと購入できない' do
         @order_address.telephone_number = '１２３４５６７８９０'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Telephone number is invalid")
+        expect(@order_address.errors.full_messages).to include('Telephone number is invalid')
       end
       it 'カード情報が空では購入できない' do
         @order_address.token = ''
