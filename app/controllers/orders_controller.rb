@@ -2,7 +2,6 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!, only: :index
   before_action :find_item, only: [:index, :create]
   before_action :varify_user, only: :index
-  before_action :sold_out, only: :index
 
   def index
     @order_address = OrderAddress.new
@@ -40,11 +39,6 @@ class OrdersController < ApplicationController
   end
 
   def varify_user
-    find_item
-    redirect_to root_path if current_user == @item.user
-  end
-
-  def sold_out
-    redirect_to root_path if @item.order.present?
+    redirect_to root_path if current_user == @item.user || @item.order.present?
   end
 end
