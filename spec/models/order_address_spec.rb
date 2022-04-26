@@ -76,14 +76,14 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include("Token can't be blank")
       end
       it 'userが紐付いていなければ購入できない' do
-        user = nil
+        @order_address.user_id = nil
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include()
+        expect(@order_address.errors.full_messages).to include("User can't be blank")
       end
       it 'itemが紐付いていなければ購入できない' do
-        item = nil
+        @order_address.item_id = nil
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include()
+        expect(@order_address.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
