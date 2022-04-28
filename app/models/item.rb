@@ -11,7 +11,8 @@ class Item < ApplicationRecord
             numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999,
                             message: 'は300から9,999,999までの半角数字で入力してください' }
 
-  belongs_to :user
+  belongs_to :user, dependent: :destroy
+  
   has_one :order
   has_one_attached :image
 
