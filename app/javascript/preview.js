@@ -9,10 +9,8 @@ document.addEventListener('DOMContentLoaded', function(){
     if (alreadyPreview) {
       alreadyPreview.remove();
     };
-    console.log(e.target.files[0]);
     const file = e.target.files[0];
     const blob = window.URL.createObjectURL(file);
-    console.log(blob);
 
     const previewWrapper = document.createElement('div');
     previewWrapper.setAttribute('class', 'preview');
