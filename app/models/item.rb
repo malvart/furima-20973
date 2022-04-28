@@ -1,15 +1,15 @@
 class Item < ApplicationRecord
   validates :item_name, presence: true
   validates :description, presence: true
-  validates :category_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :condition_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :charge_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :shipping_day_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :category_id, numericality: { other_than: 1, message: "を入力してください" }
+  validates :condition_id, numericality: { other_than: 1, message: "を入力してください" }
+  validates :charge_id, numericality: { other_than: 1, message: "を入力してください" }
+  validates :prefecture_id, numericality: { other_than: 1, message: "を入力してください" }
+  validates :shipping_day_id, numericality: { other_than: 1, message: "を入力してください" }
   validates :image, presence: true
-  validates :price,
+  validates :price, presence: true,
             numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999,
-                            message: 'is invalid' }
+                            message: 'は300から9,999,999までの半角数字で入力してください' }
 
   belongs_to :user
   has_one :order
